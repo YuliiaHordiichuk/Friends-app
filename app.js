@@ -80,9 +80,6 @@ function sort(dataArray) {
             dataArray.sort((a,b) => b.dob.age - a.dob.age)
         } else if (sortBy === 'a-z') {
             dataArray.sort((a,b) => {
-                a.name.first.toUpperCase(); 
-                b.name.first.toUpperCase();
-                
                 if (a.name.first < b.name.first) {
                     return -1; 
                 }
@@ -93,9 +90,6 @@ function sort(dataArray) {
             })
         } else if (sortBy === 'z-a') {
             dataArray.sort((a,b) => {
-                a.name.first.toUpperCase(); 
-                b.name.first.toUpperCase();
-
                 if (a.name.first > b.name.first) {
                     return -1; 
                 }
