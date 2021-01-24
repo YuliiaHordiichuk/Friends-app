@@ -51,9 +51,11 @@ function getChosenCards() {
     if (searchBy) {
         newUsers = filterBySearch(newUsers); 
     }; 
-    if (sortBy) {
-        newUsers = sort(newUsers); 
-    }; 
+    if (sortBy === '0-9' || sortBy === '9-0') {
+        newUsers = sortByAge(newUsers); 
+    } else if (sortBy === 'a-z' || sortBy === 'z-a') {
+        newUsers = sortByName(newUsers)
+    }
 
     return newUsers; 
 }
@@ -73,32 +75,38 @@ function createCards(dataArray) {
     }).join(''); 
 }
 
-function sort(dataArray) {
-        if (sortBy === '0-9') {
-            dataArray.sort((a,b) => a.dob.age - b.dob.age)
-        } else if (sortBy === '9-0') {
-            dataArray.sort((a,b) => b.dob.age - a.dob.age)
-        } else if (sortBy === 'a-z') {
-            dataArray.sort((a,b) => {
-                if (a.name.first < b.name.first) {
-                    return -1; 
-                }
-                if (a.name.first > b.name.first) {
-                    return 1; 
-                }
-                return 0; 
-            })
-        } else if (sortBy === 'z-a') {
-            dataArray.sort((a,b) => {
-                if (a.name.first > b.name.first) {
-                    return -1; 
-                }
-                if (a.name.first < b.name.first) {
-                    return 1; 
-                }
-                return 0; 
-            })
-        }
+function sortByAge(dataArray) {
+    if (sortBy === '0-9') {
+        dataArray.sort((a,b) => a.dob.age - b.dob.age)
+    } else if (sortBy === '9-0') {
+        dataArray.sort((a,b) => b.dob.age - a.dob.age)
+    }
+
+    return dataArray;
+}
+
+function sortByName(dataArray) {
+     if (sortBy === 'a-z') {
+        dataArray.sort((a,b) => {
+            if (a.name.first < b.name.first) {
+                return -1; 
+            }
+            if (a.name.first > b.name.first) {
+                return 1; 
+            }
+            return 0; 
+        })
+    } else if (sortBy === 'z-a') {
+        dataArray.sort((a,b) => {
+            if (a.name.first > b.name.first) {
+                return -1; 
+            }
+            if (a.name.first < b.name.first) {
+                return 1; 
+            }
+            return 0; 
+        })
+    }
 
     return dataArray; 
 }
