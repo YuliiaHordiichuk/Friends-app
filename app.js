@@ -96,7 +96,7 @@ function createCards(chosenUsers) {
             }
         )
         .join("");
-  }
+}
 
 function sortByAge(users) {
     users.sort((a,b) => a.dob.age - b.dob.age); 
